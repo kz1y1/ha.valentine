@@ -28,7 +28,13 @@ body{
     z-index:10;
 }
 
-/* النص GIF */
+@keyframes shine{
+    to{
+        background-position:200% center;
+    }
+}
+
+/* GIF في النص */
 .center-gif{
     width:300px;
     z-index:10;
@@ -68,7 +74,7 @@ button{
     position:absolute;
 }
 
-/* زر تشغيل الأغنية */
+/* زر تشغيل الموسيقى */
 #play-btn{
     margin-bottom:15px;
     padding:10px 20px;
@@ -94,15 +100,10 @@ button{
     <button id="no">No 😢</button>
 </div>
 
-<!-- iframe الموسيقى -->
-<div id="music-container" style="display:none;">
-    <iframe id="yt-player" width="0" height="0" 
-        src="https://www.youtube.com/embed/W0DM5lcj6mw?autoplay=1&loop=1&playlist=W0DM5lcj6mw"
-        frameborder="0"
-        allow="autoplay"
-        allowfullscreen>
-    </iframe>
-</div>
+<audio id="music" loop>
+    <source src="Dandelions.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 
 <script>
 // القلوب
@@ -123,15 +124,15 @@ function createHeart(){
 setInterval(createHeart, 250);
 
 // زر تشغيل الموسيقى
+const music = document.getElementById("music");
 const playBtn = document.getElementById("play-btn");
-const musicDiv = document.getElementById("music-container");
 
 playBtn.addEventListener("click", ()=>{
-    musicDiv.style.display = "block";
+    music.play();
     playBtn.style.display = "none";
 });
 
-// حركة زر No
+// زر No يهرب
 const noBtn = document.getElementById("no");
 noBtn.addEventListener("mouseover", ()=>{
     const x = Math.random() * (window.innerWidth - 100);
