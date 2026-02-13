@@ -100,10 +100,15 @@ button{
     <button id="no">No 😢</button>
 </div>
 
-<audio id="music" loop>
-    <source src="Dandelions.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+<!-- iframe موسيقى YouTube -->
+<div id="music-container" style="display:none;">
+    <iframe id="yt-player" width="0" height="0"
+        src="https://www.youtube.com/embed/W0DM5lcj6mw?autoplay=1&loop=1&playlist=W0DM5lcj6mw"
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen>
+    </iframe>
+</div>
 
 <script>
 // القلوب
@@ -124,11 +129,11 @@ function createHeart(){
 setInterval(createHeart, 250);
 
 // زر تشغيل الموسيقى
-const music = document.getElementById("music");
 const playBtn = document.getElementById("play-btn");
+const musicDiv = document.getElementById("music-container");
 
 playBtn.addEventListener("click", ()=>{
-    music.play();
+    musicDiv.style.display = "block";
     playBtn.style.display = "none";
 });
 
