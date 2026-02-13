@@ -28,10 +28,13 @@ body{
     z-index:10;
 }
 
-@keyframes shine{
-    to{
-        background-position:200% center;
-    }
+/* سؤال Valentine ثابت */
+.valentine-text{
+    font-size:30px;
+    color:white;
+    margin-bottom:15px;
+    z-index:20;
+    position:relative;
 }
 
 /* GIF في النص */
@@ -41,18 +44,12 @@ body{
     margin-bottom:20px;
 }
 
-/* سؤال Valentine */
-.valentine-text{
-    font-size:30px;
-    color:white;
-    margin-bottom:15px;
-}
-
 /* القلوب */
 .heart{
     position:fixed;
     color:#ff4d6d;
     animation: floatUp linear infinite;
+    z-index:5;
 }
 
 @keyframes floatUp{
@@ -102,6 +99,7 @@ button{
 
 <button id="play-btn">Play Music 🎶</button>
 
+<!-- سؤال Valentine ثابت -->
 <div class="valentine-text">Will you be my Valentine? 💖</div>
 
 <div>
@@ -158,7 +156,22 @@ noBtn.addEventListener("mouseover", ()=>{
 // زر Yes
 const yesBtn = document.getElementById("yes");
 yesBtn.addEventListener("click", ()=>{
-    document.body.innerHTML = "<h1 style='color:white;font-size:55px;text-align:center;'>Asem ❤️ Haya 💍✨</h1>";
+    // فقط نغير رسالة كبيرة أعلى القلوب، النص Valentine يبقى
+    const valentineText = document.querySelector('.valentine-text');
+    
+    // عرض رسالة Yes أعلى القلوب
+    const msg = document.createElement("h1");
+    msg.innerText = "Asem ❤️ Haya 💍✨";
+    msg.style.color = "white";
+    msg.style.fontSize = "55px";
+    msg.style.textAlign = "center";
+    msg.style.position = "absolute";
+    msg.style.top = "50%";
+    msg.style.left = "50%";
+    msg.style.transform = "translate(-50%, -50%)";
+    msg.style.zIndex = "30";
+    document.body.appendChild(msg);
+
     // انفجار قلوب
     for(let i=0;i<100;i++){
         const heart = document.createElement("div");
